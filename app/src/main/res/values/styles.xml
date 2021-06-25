@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="colorPrimary">#FFFF</item>
+        <item name="colorOnPrimary">#FF0036</item>
+    </style>
+
+</resources>

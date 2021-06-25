@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="75dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:cardCornerRadius="25dp"
+    app:strokeColor="@color/black"
+    app:strokeWidth="1.5dp"
+    app:cardElevation="15dp"
+    android:id="@+id/cardViewPT">
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageProductType"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_burger"
+            app:tint="@drawable/image_selector" />
+        <TextView
+            android:id="@+id/nameProductType"
+            android:textStyle="bold"
+            android:textColor="@drawable/image_selector"
+            android:text="Burger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+
+
+</com.google.android.material.card.MaterialCardView>

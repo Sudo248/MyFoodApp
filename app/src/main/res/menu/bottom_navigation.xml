@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/discoveryFragment"
+        android:enabled="true"
+        android:title="@string/discovery"
+        android:icon="@drawable/ic_discovery"/>
+    <item
+        android:id="@+id/goodWillFragment"
+        android:enabled="true"
+        android:title="@string/goodwill"
+        android:icon="@drawable/ic_goodwill"/>
+    <item
+        android:id="@+id/orderFragment"
+        android:enabled="true"
+        android:title="@string/order"
+        android:icon="@drawable/ic_order"/>
+    <item
+        android:id="@+id/accountFragment"
+        android:enabled="true"
+        android:title="@string/account"
+        android:icon="@drawable/ic_account"/>
+
+</menu>
