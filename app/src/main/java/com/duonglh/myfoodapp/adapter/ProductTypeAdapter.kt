@@ -44,13 +44,14 @@ class ProductTypeAdapter(val context: Context, val onItemCLickListener:(ProductT
                 nameProductType.text = productType.name
                 root.setOnClickListener {
                     onItemCLickListener(productType)
-
 //                    cardViewPT.outlineAmbientShadowColor = context.getColor(R.color.selector_color)
 //                    cardViewPT.outlineSpotShadowColor = context.getColor(R.color.selector_color)
 //                    imgProductType.setColorFilter(ContextCompat.getColor(context, R.color.selector_color), PorterDuff.Mode.SRC_IN)
 //                    nameProductType.setTextColor(R.color.selector_color)
                 }
-
+                cardViewPT.setOnCheckedChangeListener { card, isChecked ->
+                    card.isChecked = !isChecked
+                }
             }
         }
     }

@@ -61,7 +61,7 @@ class DiscoveryFragment : Fragment() {
             productAdapter = ProductAdapter {
 //                TODO("click Item Product to open Item Fragment")
                 Navigation.findNavController(this@DiscoveryFragment.binding.root)
-                    .navigate(R.id.action_discoveryFragment_to_itemFragment)
+                    .navigate(R.id.action_discoveryFragment_to_detailFragment)
             }
             superManager.liveDataListProductType.observe(this, Observer {
                 productTypeAdapter.submitList(it)
@@ -75,7 +75,6 @@ class DiscoveryFragment : Fragment() {
                 Navigation.findNavController(root)
                     .navigate(R.id.action_discoveryFragment_to_accountFragment)
             }
-
         }
     }
 

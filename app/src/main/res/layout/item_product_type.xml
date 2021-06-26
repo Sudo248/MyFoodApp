@@ -4,11 +4,12 @@
     android:layout_width="120dp"
     android:layout_height="75dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
     app:cardCornerRadius="25dp"
-    app:strokeColor="@color/black"
+    app:strokeColor="@drawable/image_selector"
     app:strokeWidth="1.5dp"
-    app:cardElevation="15dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/white"
+    android:paddingEnd="5dp"
     android:id="@+id/cardViewPT">
     <LinearLayout
         android:layout_gravity="center"

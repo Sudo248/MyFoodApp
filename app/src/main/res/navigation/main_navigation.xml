@@ -23,8 +23,8 @@
             android:id="@+id/action_discoveryFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
         <action
-            android:id="@+id/action_discoveryFragment_to_itemFragment"
-            app:destination="@id/itemFragment" />
+            android:id="@+id/action_discoveryFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -41,8 +41,8 @@
         android:label="fragment_order"
         tools:layout="@layout/fragment_order" >
         <action
-            android:id="@+id/action_orderFragment_to_itemFragment"
-            app:destination="@id/itemFragment" />
+            android:id="@+id/action_orderFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
         <action
             android:id="@+id/action_orderFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
@@ -58,8 +58,8 @@
         android:label="fragment_good_will"
         tools:layout="@layout/fragment_good_will" />
     <fragment
-        android:id="@+id/itemFragment"
-        android:name="com.duonglh.myfoodapp.fragments.ItemFragment"
-        android:label="fragment_item"
-        tools:layout="@layout/fragment_item" />
+        android:id="@+id/detailFragment"
+        android:name="com.duonglh.myfoodapp.fragments.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>

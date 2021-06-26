@@ -35,12 +35,6 @@ class OrderAdapter(val checkBox: (Boolean, Int)->Unit) :
         }
     }
 
-    var data = listOf<Product>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemOrderBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -50,8 +44,7 @@ class OrderAdapter(val checkBox: (Boolean, Int)->Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bin(data[position], position)
+        holder.bin(getItem(position), position)
     }
 
-    override fun getItemCount(): Int = data.size
 }
