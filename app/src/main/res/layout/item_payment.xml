@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_marginBottom="@dimen/marginBottom"
+    android:layout_marginTop="@dimen/marginTop">
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding"
+        app:cardCornerRadius="30dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardViewProductPayment"
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                android:layout_marginVertical="25dp"
+                app:cardCornerRadius="25dp"
+                android:layout_marginStart="@dimen/marginStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageProductPayment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/zing_burger" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:id="@+id/nameProductPayment"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="bottom"
+                android:text="Zing burger"
+                style="@style/textTitleMedium"
+                android:layout_marginTop="@dimen/marginTop"
+                android:layout_marginStart="@dimen/marginStart"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/materialCardViewProductPayment"
+                app:layout_constraintTop_toTopOf="@id/materialCardViewProductPayment"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+            <TextView
+                android:id="@+id/pricesProductPayment"
+                style="@style/textTitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/marginTop"
+                android:text="25.000đ"
+                app:layout_constraintHorizontal_bias="0"
+                android:textColor="@color/red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/nameProductPayment"
+                app:layout_constraintTop_toBottomOf="@+id/nameProductPayment" />
+
+
+            <TextView
+                android:id="@+id/countProductPayment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="Số lượng: 1"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:layout_marginTop="@dimen/marginTop"
+                android:layout_marginBottom="@dimen/marginBottom"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/pricesProductPayment"
+                app:layout_constraintStart_toStartOf="@+id/pricesProductPayment"
+                app:layout_constraintTop_toBottomOf="@+id/pricesProductPayment" />
+
+            <!--            <TextView-->
+<!--                android:id="@+id/pricesProduct"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="25.0000đ"-->
+<!--                android:textColor="@color/red"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="@id/nameProduct"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/nameProduct"-->
+<!--                app:layout_constraintVertical_bias="0.15" />-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</FrameLayout>

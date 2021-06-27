@@ -11,4 +11,6 @@
     <color name="selector_color">#FF0036</color>
     <color name="light_gray">#4DB7B7E5</color>
     <color name="red">#FF0000</color>
+    <color name="yellow_dark_20">#FFC107</color>
+    <color name="light_green">#00F1A9</color>
 </resources>

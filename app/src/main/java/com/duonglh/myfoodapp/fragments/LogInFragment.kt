@@ -35,26 +35,26 @@ class LogInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_log_in, container, false)
+        binding = FragmentLogInBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainActivity = activity as MainActivity
-        binding = FragmentLogInBinding.bind(view)
         LogInFragment.view = binding.root
         with(binding){
             signInButtonTitle.isPressed = true
             signUpButtonTitle.setOnClickListener {
-                Navigation.findNavController(binding.signFragment).navigate(R.id.action_signInFragment_to_signUpFragment)
                 signUpButtonTitle.isPressed = true
                 signInButtonTitle.isPressed = false
+                Navigation.findNavController(binding.signFragment).navigate(R.id.action_signInFragment_to_signUpFragment)
             }
             
             signInButtonTitle.setOnClickListener {
-                Navigation.findNavController(binding.signFragment).navigate(R.id.action_signUpFragment_to_signInFragment)
                 signInButtonTitle.isPressed = true
                 signUpButtonTitle.isPressed = false
+                Navigation.findNavController(binding.signFragment).navigate(R.id.action_signUpFragment_to_signInFragment)
             }
         }
 

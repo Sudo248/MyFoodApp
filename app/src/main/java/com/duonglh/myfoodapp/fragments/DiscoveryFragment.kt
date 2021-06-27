@@ -1,6 +1,7 @@
 package com.duonglh.myfoodapp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,58 +16,54 @@ import com.duonglh.myfoodapp.adapter.ProductTypeAdapter
 import com.duonglh.myfoodapp.databinding.FragmentDiscoveryBinding
 import com.duonglh.myfoodapp.viewmodel.SuperManager
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DiscoveryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DiscoveryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
 
     lateinit var binding: FragmentDiscoveryBinding
-    lateinit var superManager: SuperManager
     lateinit var productTypeAdapter: ProductTypeAdapter
     lateinit var productAdapter: ProductAdapter
+    lateinit var initManager: ()->SuperManager
+    private val manager: SuperManager by lazy { initManager() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-
+        initManager = {
+            ViewModelProvider(requireActivity()).get(SuperManager::class.java)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        superManager = activity?.let { ViewModelProvider(it).get(SuperManager::class.java) }!!
-        return inflater.inflate(R.layout.fragment_discovery, container, false)
+
+        binding = FragmentDiscoveryBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentDiscoveryBinding.bind(view)
+
         with(activity as MainActivity){
             binding.bottomNavigation.visibility = View.VISIBLE
             productTypeAdapter = ProductTypeAdapter(this){
 //                TODO("click Item ProductType to show list Product")
                 productAdapter.submitList(it.listProduct)
+                this@DiscoveryFragment.binding.nameProductTypeDiscovery.text = it.name
             }
 
             productAdapter = ProductAdapter {
-//                TODO("click Item Product to open Item Fragment")
+//                TODO("click Item Product to open Detail Fragment")
+                manager.setProductDetail(it)
+                Log.d("Product", it.toString())
                 Navigation.findNavController(this@DiscoveryFragment.binding.root)
                     .navigate(R.id.action_discoveryFragment_to_detailFragment)
             }
-            superManager.liveDataListProductType.observe(this, Observer {
-                productTypeAdapter.submitList(it)
-            })
         }
+
+        manager.listProductType.observe(viewLifecycleOwner, Observer {
+            productTypeAdapter.submitList(it)
+        })
 
         with(binding){
             rcvCategoryDiscovery.adapter = productTypeAdapter
@@ -78,23 +75,4 @@ class DiscoveryFragment : Fragment() {
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DiscoveryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DiscoveryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

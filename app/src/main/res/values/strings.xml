@@ -17,6 +17,11 @@
     <string name="password">Password</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="search_item">Search for a food item</string>
+    <string name="informationUser">
+        Lê Hồng Dương | (+84) 98 946 52 270
+        Số nhà 5a ngõ 54 Ao Sen
+        Quận Hà Đông, Phường Mộ Lao, Hà Nội
+    </string>
 
 
 </resources>

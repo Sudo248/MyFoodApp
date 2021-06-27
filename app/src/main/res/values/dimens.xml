@@ -1,3 +1,12 @@
 <resources>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="tad">30dp</dimen>
+    <dimen name="textSizeLarge">36sp</dimen>
+    <dimen name="textSizeMedium">24sp</dimen>
+    <dimen name="textSizeSmall">12sp</dimen>
+    <dimen name="marginStart">15dp</dimen>
+    <dimen name="marginTop">15dp</dimen>
+    <dimen name="marginBottom">15dp</dimen>
+    <dimen name="radiusConner">25dp</dimen>
+    <dimen name="padding">15dp</dimen>
 </resources>

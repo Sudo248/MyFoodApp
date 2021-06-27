@@ -1,60 +1,78 @@
 package com.duonglh.myfoodapp.fragments
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.duonglh.myfoodapp.R
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.duonglh.myfoodapp.MainActivity
+import com.duonglh.myfoodapp.adapter.PaymentAdapter
+import com.duonglh.myfoodapp.databinding.FragmentPaymentBinding
+import com.duonglh.myfoodapp.viewmodel.SuperManager
+import kotlin.random.Random
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PaymentFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class PaymentFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var binding: FragmentPaymentBinding
+    lateinit var initManager:()->SuperManager
+    private val manager: SuperManager by lazy { initManager() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        initManager = {
+            ViewModelProvider(requireActivity()).get(SuperManager::class.java)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_payment, container, false)
+        binding = FragmentPaymentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Payment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PaymentFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = PaymentAdapter()
+        var sumMoneyProduct = 0
+        val priceShipper = Random.nextInt()%100+10
+
+        manager.liveDataListPayment.observe(viewLifecycleOwner, Observer { list ->
+            adapter.data = list
+            list.map { sumMoneyProduct += it.first }
+        })
+
+        with(binding){
+            backButtonPayment.setOnClickListener { (activity as MainActivity).onBackPressed() }
+            rcvPayment.adapter = adapter
+            sumProductPayment.text = "${sumMoneyProduct.toString()}.000đ"
+            this.priceShipper.text = "${priceShipper.toString()}.000đ"
+            finalSumProductPayment.text = "${(sumMoneyProduct+priceShipper).toString()}.000đ"
+            finalSumProductPayment1.text = finalSumProductPayment.text
+            textSumProductPayment.text = "Tổng tiền(${adapter.data.size} sản phẩm): "
+            sumShipperPayment.text = this.priceShipper.text
+            buyButton.setOnClickListener {
+                val t = Toast.makeText(requireContext(),"Cảm ơn bạn đã đã đặt hàng!",Toast.LENGTH_LONG)
+                t.setGravity(Gravity.CENTER,0,0)
+                t.show()
+                requireActivity().onBackPressed()
             }
+        }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        manager.setListPayment(listOf())
+    }
+
 }

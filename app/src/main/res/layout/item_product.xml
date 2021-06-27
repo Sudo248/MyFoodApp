@@ -3,14 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="170dp"
-    android:layout_height="200dp">
+    android:layout_height="wrap_content"
+    android:background="@drawable/rectangle_2_conner_30">
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="10dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="10dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -31,45 +33,52 @@
                     android:background="@drawable/zing_burger" />
             </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
+
+            <ImageView
+                android:id="@+id/pin"
+                android:layout_width="15dp"
                 android:layout_height="15dp"
+                android:layout_marginStart="@dimen/marginStart"
                 android:layout_marginTop="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_pin"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardViewProduct">
+                app:layout_constraintTop_toBottomOf="@+id/materialCardViewProduct" />
 
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/ic_pin" />
+            <TextView
+                android:id="@+id/distances"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="bottom"
+                android:text="0.75km"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/pin"
+                app:layout_constraintStart_toEndOf="@id/pin"
+                app:layout_constraintTop_toTopOf="@id/pin" />
 
-                <TextView
-                    android:id="@+id/distances"
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:gravity="bottom"
-                    android:text="0.75km"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_baseline_star_rate"
+                app:layout_constraintBottom_toBottomOf="@id/starts"
+                app:layout_constraintEnd_toStartOf="@id/starts"
+                app:layout_constraintStart_toEndOf="@+id/distances"
+                app:layout_constraintTop_toTopOf="@id/starts"
+                app:layout_constraintHorizontal_bias="1"/>
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:src="@drawable/ic_baseline_star_rate" />
+            <TextView
+                android:id="@+id/starts"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/marginStart"
+                android:text="4.5"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:gravity="bottom"
+                app:layout_constraintBottom_toBottomOf="@+id/distances"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/distances"/>
 
-                <TextView
-                    android:id="@+id/starts"
-                    android:layout_width="wrap_content"
-                    android:layout_height="15dp"
-                    android:gravity="bottom"
-                    android:text="4.5"
-                    android:textColor="@color/black"
-                    android:textSize="10sp" />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/nameProduct"
@@ -84,7 +93,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.23"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/pin" />
 
             <TextView
                 android:id="@+id/pricesProduct"
@@ -94,6 +103,8 @@
                 android:textColor="@color/red"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="@dimen/marginBottom"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

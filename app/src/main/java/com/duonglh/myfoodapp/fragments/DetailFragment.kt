@@ -1,33 +1,31 @@
 package com.duonglh.myfoodapp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.duonglh.myfoodapp.MainActivity
 import com.duonglh.myfoodapp.R
+import com.duonglh.myfoodapp.databinding.FragmentDetailBinding
+import com.duonglh.myfoodapp.model.Product
+import com.duonglh.myfoodapp.viewmodel.SuperManager
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    lateinit var binding: FragmentDetailBinding
+    lateinit var initManager: ()-> SuperManager
+    private val manager: SuperManager by lazy { initManager() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        initManager = {
+            ViewModelProvider(requireActivity()).get(SuperManager::class.java)
         }
     }
 
@@ -36,13 +34,44 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        binding = FragmentDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         (activity as MainActivity).binding.bottomNavigation.visibility = View.GONE
 
+        manager.liveDataProductDetail.observe(viewLifecycleOwner, Observer {
+            bindProductDetail(it)
+            Log.d("Product Detail", it.toString())
+        })
+
+        binding.backButtonDetail.setOnClickListener{
+            (activity as MainActivity).onBackPressed()
+        }
+
+    }
+
+    private fun bindProductDetail(productDetail: Product){
+        with(binding){
+            imageProductDetail.setImageResource(productDetail.imageSrc)
+            nameProductDetail.text = productDetail.name
+            rating.rating = productDetail.stars
+            starsDetail.text = productDetail.stars.toString()
+            pricesProductDetail.text = "${productDetail.price}.000đ"
+            val sold = productDetail.sold
+            if(sold < 1000){
+                soldDetail.text = "Đã bán: "+sold.toString()
+            }else{
+                soldDetail.text = "Đã bán: %.2fk".format((sold/100F))
+            }
+            buyProductDetail.setOnClickListener {
+                manager.setListPayment(listOf(Pair(1,productDetail)))
+                Navigation.findNavController(root).navigate(R.id.action_detailFragment_to_paymentFragment)
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -50,23 +79,4 @@ class DetailFragment : Fragment() {
         (activity as MainActivity).binding.bottomNavigation.visibility = View.VISIBLE
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Item.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
