@@ -1,12 +1,11 @@
 package com.duonglh.myfoodapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.duonglh.myfoodapp.R
-import com.duonglh.myfoodapp.model.Product
-import com.duonglh.myfoodapp.model.ProductType
-import com.duonglh.myfoodapp.model.User
+import com.duonglh.myfoodapp.model.*
 
 class SuperManager : ViewModel() {
 
@@ -19,10 +18,21 @@ class SuperManager : ViewModel() {
     private var _liveDataListUser = MutableLiveData<List<User>>()
     val liveDataListUser: LiveData<List<User>> = _liveDataListUser
 
-    private var _liveDataListOrder = MutableLiveData<List<Product>>()
-    val liveDataListOrder: LiveData<List<Product>> = _liveDataListOrder
-    fun setListOrder(data: List<Product>){
+    private var _liveDataListOrder = MutableLiveData<List<DataOrderProduct>>()
+    val liveDataListOrder: LiveData<List<DataOrderProduct>> = _liveDataListOrder
+    fun setListOrder(data: List<DataOrderProduct>){
         _liveDataListOrder.value = data
+    }
+    fun setOrderProductChanged(data: DataOrderProduct, position: Int){
+        _liveDataListOrder.value?.get(position)?.isChecked = data.isChecked
+        _liveDataListOrder.value?.get(position)?.counts = data.counts
+        Log.d("update count", data.counts.toString())
+    }
+    fun addOrderProduct(data: DataOrderProduct){
+        val list = mutableListOf<DataOrderProduct>()
+        _liveDataListOrder.value?.let { list.addAll(it) }
+        list.add(data)
+        _liveDataListOrder.value = list
     }
 
     private val _liveDataListPayment = MutableLiveData<List<Pair<Int,Product>>>()
@@ -36,16 +46,27 @@ class SuperManager : ViewModel() {
     fun setProductDetail(data: Product){
         _liveDataProductDetail.value = data
     }
+    fun setProductDetailFavoriteChanged(isFavorite: Boolean){
+        _liveDataProductDetail.value?.isFavorite = isFavorite
+    }
+
+    private val _livaDataVoucher = MutableLiveData<Voucher>()
+    val liveDataVoucher: LiveData<Voucher> = _livaDataVoucher
+    fun setVoucher(data: Voucher){
+        _livaDataVoucher.value = data
+    }
+
+    var listVoucher = mutableListOf<Voucher>()
 
     init{
 
         val listProduct = mutableListOf(
-            Product(1,"Zing Burger", R.drawable.zing_burger,25,4.5F,100,100),
-            Product(2,"Salad", R.drawable.salad_and_tomatoes,10,4.0F,20,25),
-            Product(3,"Octimus", R.drawable.octimus,50,5F,120,1000),
-            Product(4,"Noodle", R.drawable.noodle,40,4.6F,100,123),
-            Product(5,"Burger", R.drawable.burger,15,3.5F,20,50),
-            Product(6,"OK", R.drawable.zing_burger,60,5F,100,100)
+            Product(1,"Zing Burger", R.drawable.zing_burger,25,4.5F,100,100, false),
+            Product(2,"Salad", R.drawable.salad_and_tomatoes,10,4.0F,20,25, false),
+            Product(3,"Octimus", R.drawable.octimus,50,5F,120,1000, false),
+            Product(4,"Noodle", R.drawable.noodle,40,4.6F,100,123, false),
+            Product(5,"Burger", R.drawable.burger,15,3.5F,20,50, false),
+            Product(6,"OK", R.drawable.zing_burger,60,5F,100,100, false)
         )
 
         val listProductType = listOf(
@@ -54,7 +75,15 @@ class SuperManager : ViewModel() {
             ProductType(3,"Pizza", R.drawable.ic_pizza_slice, mutableListOf()),
         )
 
+        listVoucher.addAll(listOf(
+            Voucher(id = 1, name = "Khuyễn mãi ngày 6-6", percents = 25, isFreeShip = true, expiryDate = 5),
+            Voucher(id = 2, name = "Khuyễn mãi ngày 7-7", percents = 0, isFreeShip = true, expiryDate = 5),
+            Voucher(id = 3, name = "Khuyễn mãi ngày 8-8", percents = 25, isFreeShip = false, expiryDate = 5),
+        ))
+
         _liveDataListProductType.value = listProductType
+
+
     }
 
 

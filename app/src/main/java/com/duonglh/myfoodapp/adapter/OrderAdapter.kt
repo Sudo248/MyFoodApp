@@ -2,34 +2,55 @@ package com.duonglh.myfoodapp.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.duonglh.myfoodapp.databinding.ItemOrderBinding
-import com.duonglh.myfoodapp.model.Product
+import com.duonglh.myfoodapp.model.DataOrderProduct
 
-class OrderAdapter(val checkBox: (Boolean, Int)->Unit) :
-    ListAdapter<Product, OrderAdapter.ViewHolder>(DifferanceProduct()){
+class OrderAdapter(val checkBox: (DataOrderProduct, Int)->Unit) :
+    ListAdapter<DataOrderProduct, OrderAdapter.ViewHolder>(
+        object : DiffUtil.ItemCallback<DataOrderProduct>(){
+            override fun areItemsTheSame(
+                oldItem: DataOrderProduct,
+                newItem: DataOrderProduct
+            ): Boolean {
+                return oldItem.product.id == newItem.product.id && oldItem.isChecked == newItem.isChecked
+            }
+
+            override fun areContentsTheSame(
+                oldItem: DataOrderProduct,
+                newItem: DataOrderProduct
+            ): Boolean {
+                return oldItem.product == newItem.product
+            }
+        }
+    ){
     inner class ViewHolder(private val binding: ItemOrderBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bin(order: Product, position: Int){
-            binding.apply {
+        fun bin(data: DataOrderProduct, position: Int){
+            val order = data.product
+            with(binding) {
                 imageOrder.setImageResource(order.imageSrc)
                 nameOrder.text = order.name
-                pricesOrder.text = "${order.price}.0000đ"
-
+                pricesOrder.text = "${order.price}.000đ"
+                var count = data.counts
+                countsOrder.text = count.toString()
                 minusOrder.setOnClickListener {
-                    var count = countsOrder.text.toString().toInt()
                     if(count > 1) {
                         countsOrder.text = (--count).toString()
                     }
                 }
 
                 addOrder.setOnClickListener {
-                    var count = countsOrder.text.toString().toInt()
                     countsOrder.text = (++count).toString()
                 }
 
+                checkboxItem.isChecked = data.isChecked
+
                 checkboxItem.setOnCheckedChangeListener { _, isChecked ->
-                    checkBox(isChecked, position)
+                    data.isChecked = isChecked
+                    data.counts = count
+                    checkBox(data, position)
                 }
             }
         }

@@ -51,14 +51,14 @@ class DiscoveryFragment : Fragment() {
                 productAdapter.submitList(it.listProduct)
                 this@DiscoveryFragment.binding.nameProductTypeDiscovery.text = it.name
             }
+        }
 
-            productAdapter = ProductAdapter {
+        productAdapter = ProductAdapter {
 //                TODO("click Item Product to open Detail Fragment")
-                manager.setProductDetail(it)
-                Log.d("Product", it.toString())
-                Navigation.findNavController(this@DiscoveryFragment.binding.root)
-                    .navigate(R.id.action_discoveryFragment_to_detailFragment)
-            }
+            manager.setProductDetail(it)
+            Log.d("Product", it.toString())
+            Navigation.findNavController(view)
+                .navigate(R.id.action_discoveryFragment_to_detailFragment)
         }
 
         manager.listProductType.observe(viewLifecycleOwner, Observer {

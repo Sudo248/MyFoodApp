@@ -7,7 +7,8 @@ data class Product(
     var price: Int,
     var stars: Float,
     var reviews: Int,
-    var sold: Int
+    var sold: Int,
+    var isFavorite: Boolean
 ) {
     companion object {
         var Count: Int = 0

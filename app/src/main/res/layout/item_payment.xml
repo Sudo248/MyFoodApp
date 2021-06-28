@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_marginBottom="@dimen/marginBottom"
-    android:layout_marginTop="@dimen/marginTop">
+    android:layout_marginTop="@dimen/marginTop"
+    android:background="@color/clear">
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
