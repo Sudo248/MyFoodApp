@@ -17,6 +17,7 @@ import com.duonglh.myfoodapp.MainActivity
 import com.duonglh.myfoodapp.R
 import com.duonglh.myfoodapp.adapter.PaymentAdapter
 import com.duonglh.myfoodapp.databinding.FragmentPaymentBinding
+import com.duonglh.myfoodapp.model.Voucher
 import com.duonglh.myfoodapp.viewmodel.SuperManager
 import kotlin.random.Random
 
@@ -28,6 +29,9 @@ class PaymentFragment : Fragment() {
     lateinit var binding: FragmentPaymentBinding
     lateinit var initManager:()->SuperManager
     private val manager: SuperManager by lazy { initManager() }
+    private var sumMoneyProduct = 0
+    private val priceShipper = Random.nextInt(10,100)
+    private var sumProduct = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,28 +54,32 @@ class PaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = PaymentAdapter()
-        var sumMoneyProduct = 0
-        val priceShipper = Random.nextInt(10,100)
-        var sumProduct = 0
 
         manager.liveDataListPayment.observe(viewLifecycleOwner, Observer { list ->
+            sumMoneyProduct = 0
+            sumProduct = 0
             adapter.data = list
             list.forEach {
                 sumMoneyProduct += (it.first * it.second.price)
                 sumProduct += it.first
             }
-            showSumMoneyPayment(sumMoneyProduct,priceShipper, sumProduct)
+            showSumMoneyPayment()
+            manager.liveDataVoucher.value?.let{
+                applyVoucher(it)
+            }
             Log.d("sum money payment", sumMoneyProduct.toString())
         })
 
         with(binding){
             rcvPayment.adapter = adapter
-            rcvPayment.setHasFixedSize(true)
+//            rcvPayment.setHasFixedSize(true)
 
             buyButton.setOnClickListener {
                 val t = Toast.makeText(requireContext(),"Cảm ơn bạn đã đã đặt hàng!", Toast.LENGTH_LONG)
                 t.setGravity(Gravity.CENTER,0,0)
                 t.show()
+                manager.setListPayment(listOf())
+                manager.setVoucher(null)
                 Navigation.findNavController(view).navigate(R.id.action_paymentFragment_to_discoveryFragment)
             }
             constrainVoucherPayment.setOnClickListener {
@@ -81,22 +89,39 @@ class PaymentFragment : Fragment() {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        manager.setListPayment(listOf())
-    }
-
-    fun showSumMoneyPayment(sumMoneyProduct: Int, priceShipper: Int, countProduct: Int) {
+    fun showSumMoneyPayment() {
 //        val currency = NumberFormat.getCurrencyInstance(Locale.US)
         with(binding){
             backButtonPayment.setOnClickListener { (activity as MainActivity).onBackPressed() }
             sumProductPayment.text = "${sumMoneyProduct}.000đ"//currency.format(sumMoneyProduct)
-            this.priceShipper.text = "${priceShipper}.000đ"//currency.format(priceShipper)
-            finalSumProductPayment.text = "${sumMoneyProduct+priceShipper}.000đ" //currency.format(sumMoneyProduct+priceShipper)
+            this.priceShipper.text = "${this@PaymentFragment.priceShipper}.000đ"//currency.format(priceShipper)
+            finalSumProductPayment.text = "${sumMoneyProduct+this@PaymentFragment.priceShipper}.000đ" //currency.format(sumMoneyProduct+priceShipper)
             finalSumProductPayment1.text = finalSumProductPayment.text
-            textSumProductPayment.text = "Tổng tiền(${countProduct} sản phẩm): "
+            textSumProductPayment.text = "Tổng tiền(${sumProduct} sản phẩm): "
             sumShipperPayment.text = this.priceShipper.text
         }
     }
+    fun applyVoucher(voucher: Voucher?){
+        voucher?.let{
+            with(binding){
+                if(voucher.isFreeShip){
+                    this.priceShipper.text = "0đ"
+                    sumShipperPayment.text = "0đ"
+                    sumMoneyProduct -= (sumMoneyProduct * voucher.percents /100)
+                    finalSumProductPayment.text = "$sumMoneyProduct.000đ"
+                    finalSumProductPayment1.text = finalSumProductPayment.text
+                }
+                else{
+                    var sum = sumMoneyProduct+this@PaymentFragment.priceShipper
+                    sum -= (sum * voucher.percents /100)
+                    finalSumProductPayment.text = "$sum.000đ"
+                    finalSumProductPayment1.text = finalSumProductPayment.text
+                }
+                percentVoucherPayment.text = voucher.percents.toString()+"%"
+            }
+        }
+
+    }
+
 
 }

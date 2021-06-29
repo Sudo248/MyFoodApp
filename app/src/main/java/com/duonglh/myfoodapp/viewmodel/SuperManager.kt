@@ -22,10 +22,13 @@ class SuperManager : ViewModel() {
     val liveDataListOrder: LiveData<List<DataOrderProduct>> = _liveDataListOrder
     fun setListOrder(data: List<DataOrderProduct>){
         _liveDataListOrder.value = data
+        _liveDataListPayment.value = data.filter { it.isChecked }.map{ Pair(it.counts,it.product) }
     }
     fun setOrderProductChanged(data: DataOrderProduct, position: Int){
         _liveDataListOrder.value?.get(position)?.isChecked = data.isChecked
         _liveDataListOrder.value?.get(position)?.counts = data.counts
+        _liveDataListPayment.value =
+            _liveDataListOrder.value?.filter { it.isChecked }?.map{ Pair(it.counts,it.product) }
         Log.d("update count", data.counts.toString())
     }
     fun addOrderProduct(data: DataOrderProduct){
@@ -50,9 +53,9 @@ class SuperManager : ViewModel() {
         _liveDataProductDetail.value?.isFavorite = isFavorite
     }
 
-    private val _livaDataVoucher = MutableLiveData<Voucher>()
-    val liveDataVoucher: LiveData<Voucher> = _livaDataVoucher
-    fun setVoucher(data: Voucher){
+    private val _livaDataVoucher = MutableLiveData<Voucher?>()
+    val liveDataVoucher: LiveData<Voucher?> = _livaDataVoucher
+    fun setVoucher(data: Voucher?){
         _livaDataVoucher.value = data
     }
 
@@ -76,14 +79,30 @@ class SuperManager : ViewModel() {
         )
 
         listVoucher.addAll(listOf(
-            Voucher(id = 1, name = "Khuyễn mãi ngày 6-6", percents = 25, isFreeShip = true, expiryDate = 5),
-            Voucher(id = 2, name = "Khuyễn mãi ngày 7-7", percents = 0, isFreeShip = true, expiryDate = 5),
-            Voucher(id = 3, name = "Khuyễn mãi ngày 8-8", percents = 25, isFreeShip = false, expiryDate = 5),
+            Voucher(
+                id = 1,
+                name = "Khuyễn mãi ngày 6-6",
+                percents = 25,
+                isFreeShip = true,
+                dueDate = 5
+            ),
+            Voucher(
+                id = 2,
+                name = "Khuyễn mãi ngày 7-7",
+                percents = 0,
+                isFreeShip = true,
+                dueDate = 6
+            ),
+            Voucher(
+                id = 3,
+                name = "Khuyễn mãi ngày 8-8",
+                percents = 25,
+                isFreeShip = false,
+                dueDate = 7
+            ),
         ))
 
         _liveDataListProductType.value = listProductType
-
-
     }
 
 

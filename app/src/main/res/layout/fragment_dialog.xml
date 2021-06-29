@@ -5,157 +5,154 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.DialogFragment"
-    android:background="@color/clear">
+    tools:context=".fragments.DialogFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <com.google.android.material.card.MaterialCardView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="25dp"
-        android:elevation="8dp">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/marginStart">
+
+        <ImageButton
+            android:id="@+id/closeDialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/nameOrderDialog"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageOrderDialog"
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:src="@drawable/zing_burger"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nameOrderDialog"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="@dimen/marginStart">
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:singleLine="true"
+            android:text="Zing Burger"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageOrderDialog"
+            app:layout_constraintTop_toTopOf="@id/imageOrderDialog" />
+
+        <TextView
+            android:id="@+id/pricesOrderDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50.000đ"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintBottom_toBottomOf="@+id/imageOrderDialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/nameOrderDialog"
+            app:layout_constraintTop_toBottomOf="@id/nameOrderDialog" />
+
+        <TextView
+            android:id="@+id/countsLabelDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số lượng"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintBottom_toBottomOf="@+id/changeCount"
+            app:layout_constraintEnd_toStartOf="@+id/changeCount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/changeCount" />
+
+        <LinearLayout
+            android:id="@+id/changeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/marginTop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageOrderDialog">
 
             <ImageButton
-                android:id="@+id/closeDialogButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:src="@drawable/ic_baseline_close"
-                android:layout_marginStart="24dp"
-                app:layout_constraintHorizontal_bias="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/nameOrderDialog"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageOrderDialog"
-                android:layout_width="150dp"
-                android:layout_height="120dp"
-                android:src="@drawable/zing_burger"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/nameOrderDialog"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:singleLine="true"
-                android:text="Zing Burger"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imageOrderDialog"
-                app:layout_constraintTop_toTopOf="@id/imageOrderDialog" />
-
-            <TextView
-                android:id="@+id/pricesOrderDialog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="50.000đ"
-                android:textColor="@color/red"
-                android:textSize="20sp"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintBottom_toBottomOf="@+id/imageOrderDialog"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/nameOrderDialog"
-                app:layout_constraintTop_toBottomOf="@id/nameOrderDialog" />
-
-            <TextView
-                android:id="@+id/countsLabelDialog"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Số lượng"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintBottom_toBottomOf="@+id/changeCount"
-                app:layout_constraintEnd_toStartOf="@+id/changeCount"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/changeCount" />
-
-            <LinearLayout
-                android:id="@+id/changeCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/minusOrder"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:background="@drawable/rectangle"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/marginTop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageOrderDialog">
-
-                <ImageButton
-                    android:id="@+id/minusOrder"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/rectangle"
-                    android:src="@drawable/ic_minus" />
-
-                <TextView
-                    android:id="@+id/countsOrder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="1"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <ImageButton
-                    android:id="@+id/addOrder"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/rectangle"
-                    android:src="@drawable/ic_add" />
-
-            </LinearLayout>
+                android:src="@drawable/ic_minus" />
 
             <TextView
-                android:id="@+id/sumMoneyDialog"
+                android:id="@+id/countsOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/marginTop"
-                android:text="25.000đ"
-                android:textColor="@color/red"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@+id/changeCount"
-                app:layout_constraintTop_toBottomOf="@+id/changeCount" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tổng tiền"
+                android:layout_marginStart="20dp"
+                android:text="1"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/sumMoneyDialog"
-                app:layout_constraintEnd_toStartOf="@+id/sumMoneyDialog"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="@+id/countsLabelDialog"
-                app:layout_constraintTop_toTopOf="@+id/sumMoneyDialog" />
+                android:textSize="15sp" />
 
-            <Button
-                android:id="@+id/buyDialogButton"
-                android:text="Mua ngay"
-                app:backgroundTint="@color/selector_color"
-                android:background="@drawable/rectangle_conner_25"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/marginTop"
-                android:layout_marginBottom="@dimen/marginBottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sumMoneyDialog"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+            <ImageButton
+                android:id="@+id/addOrder"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/rectangle"
+                android:src="@drawable/ic_add" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sumMoneyDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:text="25.000đ"
+            android:textColor="@color/red"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/changeCount"
+            app:layout_constraintTop_toBottomOf="@+id/changeCount" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tổng tiền"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/sumMoneyDialog"
+            app:layout_constraintEnd_toStartOf="@+id/sumMoneyDialog"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@+id/countsLabelDialog"
+            app:layout_constraintTop_toTopOf="@+id/sumMoneyDialog" />
+
+        <Button
+            android:id="@+id/buyDialogButton"
+            android:text="Mua ngay"
+            app:backgroundTint="@color/selector_color"
+            android:background="@drawable/rectangle_conner_25"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginBottom="@dimen/marginBottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sumMoneyDialog"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

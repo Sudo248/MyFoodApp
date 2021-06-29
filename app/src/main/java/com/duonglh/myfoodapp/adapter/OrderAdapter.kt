@@ -38,11 +38,19 @@ class OrderAdapter(val checkBox: (DataOrderProduct, Int)->Unit) :
                 minusOrder.setOnClickListener {
                     if(count > 1) {
                         countsOrder.text = (--count).toString()
+                        if(data.isChecked){
+                            data.counts = count
+                            checkBox(data, position)
+                        }
                     }
                 }
 
                 addOrder.setOnClickListener {
                     countsOrder.text = (++count).toString()
+                    if(data.isChecked){
+                        data.counts = count
+                        checkBox(data, position)
+                    }
                 }
 
                 checkboxItem.isChecked = data.isChecked

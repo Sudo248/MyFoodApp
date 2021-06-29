@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/imageVoucher"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/zing_burger" />
+    <TextView
+        android:id="@+id/nameVoucher"
+        android:text="Miễn phí 6-6"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginStart="@dimen/marginStart"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageVoucher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/reducePricePercent"
+        style="@style/textTitleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giảm giá: "
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toEndOf="@+id/nameVoucher"
+        app:layout_constraintStart_toStartOf="@id/nameVoucher"
+        app:layout_constraintTop_toBottomOf="@id/nameVoucher" />
+
+    <TextView
+        android:id="@+id/isFreeShip"
+        style="@style/textTitleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Free ship: "
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toEndOf="@+id/reducePricePercent"
+        app:layout_constraintStart_toStartOf="@id/reducePricePercent"
+        app:layout_constraintTop_toBottomOf="@id/reducePricePercent" />
+    <TextView
+        android:id="@+id/dueDate"
+        android:text="HSD: "
+        style="@style/textTitleSmall"
+        app:layout_constraintEnd_toEndOf="@id/isFreeShip"
+        app:layout_constraintStart_toStartOf="@id/isFreeShip"
+        app:layout_constraintTop_toBottomOf="@id/isFreeShip"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxVoucher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nameVoucher"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

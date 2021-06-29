@@ -62,12 +62,16 @@ class DiscoveryFragment : Fragment() {
         }
 
         manager.listProductType.observe(viewLifecycleOwner, Observer {
-            productTypeAdapter.submitList(it)
+            productTypeAdapter.data = it
+            productAdapter.submitList(it[0].listProduct)
         })
 
         with(binding){
             rcvCategoryDiscovery.adapter = productTypeAdapter
             rcvProductDiscovery.adapter = productAdapter
+
+//            rcvCategoryDiscovery.setHasFixedSize(true)
+//            rcvProductDiscovery.setHasFixedSize(true)
             imageUser.setOnClickListener {
                 Navigation.findNavController(root)
                     .navigate(R.id.action_discoveryFragment_to_accountFragment)

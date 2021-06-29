@@ -5,5 +5,5 @@ data class Voucher(
     val name: String,
     val percents: Int,
     val isFreeShip: Boolean,
-    var expiryDate: Int
+    var dueDate: Int
 )

@@ -7,9 +7,7 @@
     app:cardCornerRadius="25dp"
     app:strokeColor="@drawable/image_selector"
     app:strokeWidth="1.5dp"
-    app:cardElevation="8dp"
     app:cardBackgroundColor="@color/white"
-    android:id="@+id/cardViewPT"
     android:layout_marginEnd="10dp">
     <LinearLayout
         android:layout_gravity="center"
@@ -23,11 +21,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_burger"
-            app:tint="@drawable/image_selector" />
+            app:tint="#FF888888" />
         <TextView
             android:id="@+id/nameProductType"
             android:textStyle="bold"
-            android:textColor="@drawable/image_selector"
+            android:textColor="#FF888888"
             android:text="Burger"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

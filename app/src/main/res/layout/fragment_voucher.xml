@@ -32,17 +32,20 @@
     </LinearLayout>
 
 
-    <androidx.appcompat.widget.SearchView
+    <EditText
         android:id="@+id/searchView"
+        android:hint="Nhập mã giảm giá"
+        android:paddingHorizontal="20dp"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:queryHint="Nhập mã voucher"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/marginStart"
         android:layout_marginEnd="@dimen/marginStart"
         android:background="@drawable/background_search"
-        android:layout_marginStart="@dimen/marginStart"
+        app:layout_constraintBottom_toBottomOf="@+id/applyVoucherButton"
         app:layout_constraintEnd_toStartOf="@+id/applyVoucherButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerVoucher" />
+        app:layout_constraintTop_toTopOf="@id/applyVoucherButton"
+        app:queryHint="Nhập mã voucher" />
 
     <Button
         android:id="@+id/applyVoucherButton"
@@ -55,9 +58,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/marginStart"
-        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/headerVoucher" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_voucher"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginBottom="@dimen/marginBottom"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/agreeVoucherButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
     <Button
         android:id="@+id/agreeVoucherButton"

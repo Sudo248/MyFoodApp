@@ -51,22 +51,22 @@ class OrderFragment : Fragment() {
         manager.liveDataListOrder.observe(viewLifecycleOwner, Observer { list ->
             Log.d("From observer adapter", list.toString())
             adapter.submitList(list)
-            manager.setListPayment(list.filter { it.isChecked }.map{ Pair(it.counts,it.product) })
+           // manager.setListPayment(list.filter { it.isChecked }.map{ Pair(it.counts,it.product) })
             listOrderProDuct = list as MutableList<DataOrderProduct>
         })
 
         with(binding){
-
             checkAll.setOnCheckedChangeListener { _, isChecked ->
                 Log.d("check All", isChecked.toString())
                 manager.setListOrder(listOrderProDuct.map { DataOrderProduct(isChecked,it.counts,it.product) })
             }
 
             buyProductOrder.setOnClickListener {
+
                 Navigation.findNavController(root).navigate(R.id.action_orderFragment_to_paymentFragment)
             }
             rcvOrder.adapter = adapter
-            rcvOrder.setHasFixedSize(true)
+//            rcvOrder.setHasFixedSize(true)
 
             constrainVoucherOrder.setOnClickListener {
                 Navigation.findNavController(root).navigate(R.id.action_orderFragment_to_voucherFragment)

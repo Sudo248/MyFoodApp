@@ -1,25 +1,23 @@
 package com.duonglh.myfoodapp.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.duonglh.myfoodapp.databinding.ItemProductTypeBinding
 import com.duonglh.myfoodapp.model.ProductType
 
-class ProductTypeAdapter(val context: Context, val onItemCLickListener:(ProductType) -> Unit) : ListAdapter<ProductType, ProductTypeAdapter.ViewHolder>(
-    object : DiffUtil.ItemCallback<ProductType>(){
-        override fun areItemsTheSame(oldItem: ProductType, newItem: ProductType): Boolean {
-            return oldItem.id == newItem.id
-        }
-        override fun areContentsTheSame(oldItem: ProductType, newItem: ProductType): Boolean {
-            return oldItem == newItem
-        }
-    }
-){
+class ProductTypeAdapter(val context: Context, val onItemCLickListener:(ProductType) -> Unit) :
+    RecyclerView.Adapter<ProductTypeAdapter.ViewHolder>(){
 
+    var currentItem = 0
+
+    var data = listOf<ProductType>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemProductTypeBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -29,12 +27,15 @@ class ProductTypeAdapter(val context: Context, val onItemCLickListener:(ProductT
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(data[position])
+        if(position == currentItem){
+            holder.setColorOnClickItem()
+        }
+        else{
+            holder.setColorNotClickItem()
+        }
     }
 
-    override fun submitList(list: List<ProductType>?) {
-        super.submitList(list?.let { ArrayList(it) })
-    }
 
     inner class ViewHolder(private val binding: ItemProductTypeBinding) : RecyclerView.ViewHolder(binding.root){
 
@@ -44,15 +45,34 @@ class ProductTypeAdapter(val context: Context, val onItemCLickListener:(ProductT
                 nameProductType.text = productType.name
                 root.setOnClickListener {
                     onItemCLickListener(productType)
+                    currentItem = adapterPosition
+                    notifyDataSetChanged()
 //                    cardViewPT.outlineAmbientShadowColor = context.getColor(R.color.selector_color)
 //                    cardViewPT.outlineSpotShadowColor = context.getColor(R.color.selector_color)
 //                    imgProductType.setColorFilter(ContextCompat.getColor(context, R.color.selector_color), PorterDuff.Mode.SRC_IN)
 //                    nameProductType.setTextColor(R.color.selector_color)
                 }
-                cardViewPT.setOnCheckedChangeListener { card, isChecked ->
-                    card.isChecked = !isChecked
-                }
+
+            }
+        }
+
+        fun setColorOnClickItem(){
+            with(binding){
+                root.strokeWidth = 4
+                root.strokeColor = Color.RED
+                imageProductType.setColorFilter(Color.RED)
+                nameProductType.setTextColor(Color.RED)
+            }
+        }
+        fun setColorNotClickItem(){
+            with(binding){
+                root.strokeWidth = 1
+                root.strokeColor = Color.GRAY
+                imageProductType.setColorFilter(Color.GRAY)
+                nameProductType.setTextColor(Color.GRAY)
             }
         }
     }
+
+    override fun getItemCount(): Int = data.size
 }

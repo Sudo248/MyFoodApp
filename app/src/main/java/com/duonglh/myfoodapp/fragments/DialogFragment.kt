@@ -1,6 +1,7 @@
 package com.duonglh.myfoodapp.fragments
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,7 @@ class DialogFragment(val toPaymentFragment: ()->Unit) : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        dialog?.window?.setGravity(Gravity.BOTTOM)
         binding = FragmentDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -71,7 +73,8 @@ class DialogFragment(val toPaymentFragment: ()->Unit) : DialogFragment() {
             }
             imageOrderDialog.setImageResource(data.second.imageSrc)
             nameOrderDialog.text = data.second.name
-            pricesOrderDialog.text = data.second.price.toString()
+            pricesOrderDialog.text = data.second.price.toString()+".000đ"
+            sumMoneyDialog.text = "${data.second.price}.000đ"
         }
     }
 
