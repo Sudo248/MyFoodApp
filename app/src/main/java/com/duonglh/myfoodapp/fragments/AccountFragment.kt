@@ -5,18 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.duonglh.myfoodapp.MainActivity
 import com.duonglh.myfoodapp.R
 import com.duonglh.myfoodapp.databinding.FragmentAccountBinding
+import com.duonglh.myfoodapp.viewmodel.SuperManager
 
 class AccountFragment : Fragment() {
 
     lateinit var binding: FragmentAccountBinding
+    lateinit var initManager:()-> SuperManager
+    val manager: SuperManager by lazy { initManager() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        initManager = {
+            ViewModelProvider(requireActivity()).get(SuperManager::class.java)
+        }
     }
 
     override fun onCreateView(
@@ -25,6 +31,7 @@ class AccountFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentAccountBinding.inflate(inflater, container, false)
+        binding.user = manager.currentUser
         return binding.root
     }
 
@@ -33,7 +40,7 @@ class AccountFragment : Fragment() {
         with(binding){
             logOut.setOnClickListener {
                 (activity as MainActivity).binding.bottomNavigation.visibility = View.GONE
-                Navigation.findNavController(root).navigate(R.id.action_accountFragment_to_logInFragment)
+                findNavController().navigate(R.id.action_accountFragment_to_logInFragment)
             }
         }
     }

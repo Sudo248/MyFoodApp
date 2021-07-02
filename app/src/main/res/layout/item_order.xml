@@ -7,80 +7,107 @@
     app:cardCornerRadius="25dp"
     android:padding="@dimen/padding"
     android:layout_marginBottom="@dimen/marginBottom">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="15dp">
-        <CheckBox
-            android:id="@+id/checkboxItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
-            android:id="@+id/imageOrder"
-            android:layout_width="150dp"
-            android:layout_height="120dp"
-            android:src="@drawable/zing_burger"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/checkboxItem"
-            app:layout_constraintTop_toTopOf="parent" />
-        <TextView
-            android:id="@+id/nameOrder"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:text="Zing Burger"
-            android:textColor="@color/black"
-            android:singleLine="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            app:layout_constraintStart_toEndOf="@id/imageOrder"
-            app:layout_constraintTop_toTopOf="@id/imageOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:id="@+id/pricesOrder"
-            android:textColor="@color/red"
-            android:textSize="20sp"
-            android:text="50.000đ"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@id/nameOrder"
-            app:layout_constraintTop_toBottomOf="@id/nameOrder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:scrollbars="none"
+        android:fillViewport="true">
         <LinearLayout
-            app:layout_constraintStart_toStartOf="@+id/pricesOrder"
-            app:layout_constraintTop_toBottomOf="@+id/pricesOrder"
-            android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@drawable/rectangle">
-            <ImageButton
-                android:id="@+id/minusOrder"
-                android:background="@drawable/rectangle"
-                android:src="@drawable/ic_minus"
-                android:layout_width="20dp"
-                android:layout_height="20dp" />
-            <TextView
-                android:id="@+id/countsOrder"
-                android:text="1"
-                android:textSize="15sp"
-                android:textColor="@color/black"
-                android:layout_marginStart="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <ImageButton
-                android:id="@+id/addOrder"
-                android:layout_marginStart="20dp"
-                android:background="@drawable/rectangle"
-                android:src="@drawable/ic_add"
-                android:layout_width="20dp"
-                android:layout_height="20dp"/>
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="15dp">
+
+                <CheckBox
+                    android:id="@+id/checkboxItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageOrder"
+                    android:layout_width="150dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/zing_burger"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/checkboxItem"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/nameOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:singleLine="true"
+                    android:text="Zing Burger"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imageOrder"
+                    app:layout_constraintTop_toTopOf="@id/imageOrder" />
+
+                <TextView
+                    android:id="@+id/pricesOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="50.000đ"
+                    android:textColor="@color/red"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@id/nameOrder"
+                    app:layout_constraintTop_toBottomOf="@id/nameOrder" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/rectangle"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="@+id/pricesOrder"
+                    app:layout_constraintTop_toBottomOf="@+id/pricesOrder">
+
+                    <ImageButton
+                        android:id="@+id/minusOrder"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/rectangle"
+                        android:src="@drawable/ic_minus" />
+
+                    <TextView
+                        android:id="@+id/countsOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <ImageButton
+                        android:id="@+id/addOrder"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="20dp"
+                        android:background="@drawable/rectangle"
+                        android:src="@drawable/ic_add" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/deleteOrderButton"
+                android:layout_marginStart="100dp"
+                android:text="Xóa"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"/>
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </HorizontalScrollView>
 </com.google.android.material.card.MaterialCardView>

@@ -1,309 +1,333 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.AccountFragment"
-    android:background="@color/background_color">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="user"
+            type="com.duonglh.myfoodapp.model.User" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/titleAccount"
-            android:text="Cá nhân"
-            style="@style/textTitleMedium"
-            android:padding="@dimen/padding"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_height="match_parent"
+        tools:context=".fragments.AccountFragment"
+        android:background="@color/background_color">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardUser"
-            app:layout_constraintTop_toBottomOf="@+id/titleAccount"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding"
-            app:cardCornerRadius="25dp"
-            android:layout_marginHorizontal="@dimen/marginStart">
-            <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent">
+            <!-- TODO: Update blank fragment layout -->
+            <TextView
+                android:id="@+id/titleAccount"
+                android:text="Cá nhân"
+                style="@style/textTitleMedium"
+                android:padding="@dimen/padding"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/red"
-                android:padding="@dimen/padding">
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardImageUser"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    app:cardCornerRadius="50dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardUser"
+                app:layout_constraintTop_toBottomOf="@+id/titleAccount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding"
+                app:cardCornerRadius="25dp"
+                android:layout_marginHorizontal="@dimen/marginStart">
 
-                    <ImageView
-                        android:id="@+id/imageUser"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/red"
+                    android:padding="@dimen/padding">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardImageUser"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:background="@drawable/user_image"
-                        android:scaleType="centerCrop" />
-                </com.google.android.material.card.MaterialCardView>
+                        app:cardCornerRadius="50dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/nameUser"
-                    style="@style/textTitleMedium"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/marginStart"
-                    android:text="Duonglh"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="@+id/cardImageUser"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/cardImageUser"
-                    app:layout_constraintTop_toTopOf="@+id/cardImageUser" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:id="@+id/imageUser"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:background="@drawable/user_image"
+                            android:scaleType="centerCrop" />
+                    </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/marginStart"
-            android:layout_marginTop="24dp"
-            app:cardCornerRadius="25dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardUser">
+                    <TextView
+                        android:id="@+id/nameUser"
+                        style="@style/textTitleMedium"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/marginStart"
+                        android:text="@{user.name}"
+                        tools:text="DuongLH"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="@+id/cardImageUser"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cardImageUser"
+                        app:layout_constraintTop_toTopOf="@+id/cardImageUser" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/padding">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/marginStart"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardUser">
 
-                <TextView
-                    android:id="@+id/titleInformationUser"
-                    style="@style/textTitleMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thông tin người dùng"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/padding">
 
-                <TextView
-                    android:id="@+id/nameUser1"
-                    style="@style/user"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/marginTop"
-                    android:layout_marginEnd="@dimen/marginStart"
-                    android:text="Duonglh"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/titleInformationUser" />
+                    <TextView
+                        android:id="@+id/titleInformationUser"
+                        style="@style/textTitleMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thông tin người dùng"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/marginStart"
-                    android:text="Tên đăng nhập"
-                    app:layout_constraintBottom_toBottomOf="@+id/nameUser1"
-                    app:layout_constraintEnd_toStartOf="@+id/nameUser1"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/nameUser1" />
+                    <TextView
+                        android:id="@+id/nameUser1"
+                        style="@style/user"
+                        android:singleLine="true"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:layout_marginEnd="@dimen/marginStart"
+                        android:text="@{user.name}"
+                        tools:text="DuongLh"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/titleInformationUser" />
 
-                <TextView
-                    android:id="@+id/password"
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/marginTop"
-                    android:layout_marginEnd="@dimen/marginStart"
-                    android:text="********"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nameUser1" />
+                    <TextView
+                        style="@style/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/marginStart"
+                        android:text="Tên đăng nhập"
+                        app:layout_constraintBottom_toBottomOf="@+id/nameUser1"
+                        app:layout_constraintEnd_toStartOf="@+id/nameUser1"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/nameUser1" />
 
-                <TextView
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/marginStart"
-                    android:text="Mật khẩu"
-                    app:layout_constraintBottom_toBottomOf="@+id/password"
-                    app:layout_constraintEnd_toStartOf="@+id/password"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/password" />
+                    <TextView
+                        android:id="@+id/password"
+                        style="@style/user"
+                        android:singleLine="true"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:layout_marginEnd="@dimen/marginStart"
+                        android:text="********"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/nameUser1" />
 
-                <TextView
-                    android:id="@+id/gender"
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/marginTop"
-                    android:layout_marginEnd="@dimen/marginStart"
-                    android:text="Nam"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/password" />
+                    <TextView
+                        style="@style/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/marginStart"
+                        android:text="Mật khẩu"
+                        app:layout_constraintBottom_toBottomOf="@+id/password"
+                        app:layout_constraintEnd_toStartOf="@+id/password"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/password" />
 
-                <TextView
-                    android:id="@+id/textView6"
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/marginStart"
-                    android:text="Giới tính"
-                    app:layout_constraintBottom_toBottomOf="@+id/gender"
-                    app:layout_constraintEnd_toStartOf="@+id/gender"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/gender" />
+                    <TextView
+                        android:id="@+id/gender"
+                        style="@style/user"
+                        android:singleLine="true"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:layout_marginEnd="@dimen/marginStart"
+                        tools:text="Nam"
+                        android:text="@{user.gender}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/password" />
 
-                <TextView
-                    android:id="@+id/phoneNumber"
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/marginTop"
-                    android:layout_marginEnd="@dimen/marginStart"
-                    android:text="*******270"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/gender" />
+                    <TextView
+                        android:id="@+id/textView6"
+                        style="@style/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/marginStart"
+                        android:text="Giới tính"
+                        app:layout_constraintBottom_toBottomOf="@+id/gender"
+                        app:layout_constraintEnd_toStartOf="@+id/gender"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/gender" />
 
-                <TextView
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/marginStart"
-                    android:text="Số điện thoại"
-                    app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
-                    app:layout_constraintEnd_toStartOf="@+id/phoneNumber"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/phoneNumber" />
+                    <TextView
+                        android:id="@+id/phoneNumber"
+                        style="@style/user"
+                        android:singleLine="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:layout_marginEnd="@dimen/marginStart"
+                        tools:text="*******270"
+                        android:text="@{user.phoneNumber}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/gender" />
 
-                <TextView
-                    android:id="@+id/email"
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/marginTop"
-                    android:layout_marginEnd="@dimen/marginStart"
-                    android:text="ho***@..."
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+                    <TextView
+                        style="@style/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/marginStart"
+                        android:text="Số điện thoại"
+                        app:layout_constraintBottom_toBottomOf="@+id/phoneNumber"
+                        app:layout_constraintEnd_toStartOf="@+id/phoneNumber"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/phoneNumber" />
 
-                <TextView
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/marginStart"
-                    android:text="Email"
-                    app:layout_constraintBottom_toBottomOf="@+id/email"
-                    app:layout_constraintEnd_toStartOf="@+id/email"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/email" />
+                    <TextView
+                        android:id="@+id/email"
+                        style="@style/user"
+                        android:layout_width="80dp"
+                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:layout_marginEnd="@dimen/marginStart"
+                        tools:text="ho***@..."
+                        android:text="@{user.email}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
 
-                <TextView
-                    android:id="@+id/address"
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/marginTop"
-                    android:layout_marginEnd="@dimen/marginStart"
-                    android:text="Ao Sen"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/email" />
+                    <TextView
+                        style="@style/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/marginStart"
+                        android:text="Email"
+                        app:layout_constraintBottom_toBottomOf="@+id/email"
+                        app:layout_constraintEnd_toStartOf="@+id/email"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/email" />
 
-                <TextView
-                    android:id="@+id/textView7"
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/marginStart"
-                    android:text="Địa chỉ"
-                    app:layout_constraintBottom_toBottomOf="@+id/address"
-                    app:layout_constraintEnd_toStartOf="@+id/address"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/address" />
+                    <TextView
+                        android:id="@+id/address"
+                        style="@style/user"
+                        android:layout_width="80dp"
+                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:layout_marginEnd="@dimen/marginStart"
+                        tools:text="Ao Sen"
+                        android:text="@{user.address}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/email" />
 
-                <TextView
-                    android:id="@+id/bank"
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/marginTop"
-                    android:layout_marginEnd="@dimen/marginStart"
-                    android:text="Techcom..."
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/address" />
+                    <TextView
+                        android:id="@+id/textView7"
+                        style="@style/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/marginStart"
+                        android:text="Địa chỉ"
+                        app:layout_constraintBottom_toBottomOf="@+id/address"
+                        app:layout_constraintEnd_toStartOf="@+id/address"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/address" />
 
-                <TextView
-                    android:id="@+id/textView5"
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/marginStart"
-                    android:text="Ngân hàng liên kết"
-                    app:layout_constraintBottom_toBottomOf="@+id/bank"
-                    app:layout_constraintEnd_toStartOf="@+id/bank"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/bank" />
+                    <TextView
+                        android:id="@+id/bank"
+                        style="@style/user"
+                        android:layout_width="80dp"
+                        android:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:layout_marginEnd="@dimen/marginStart"
+                        tools:text="Techcombank"
+                        android:text="@{user.bank}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/address" />
 
-                <TextView
-                    android:id="@+id/introduce"
-                    style="@style/user"
-                    android:textColor="@color/red"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/marginTop"
-                    android:layout_marginEnd="@dimen/marginStart"
-                    android:layout_marginBottom="@dimen/marginBottom"
-                    android:text="more..."
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/bank" />
+                    <TextView
+                        android:id="@+id/textView5"
+                        style="@style/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/marginStart"
+                        android:text="Ngân hàng liên kết"
+                        app:layout_constraintBottom_toBottomOf="@+id/bank"
+                        app:layout_constraintEnd_toStartOf="@+id/bank"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/bank" />
 
-                <TextView
-                    style="@style/user"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/marginStart"
-                    android:text="Giới thiệu"
-                    app:layout_constraintBottom_toBottomOf="@+id/introduce"
-                    app:layout_constraintEnd_toStartOf="@+id/introduce"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/introduce" />
+                    <TextView
+                        android:id="@+id/introduce"
+                        style="@style/user"
+                        android:textColor="@color/red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/marginTop"
+                        android:layout_marginEnd="@dimen/marginStart"
+                        android:layout_marginBottom="@dimen/marginBottom"
+                        android:text="more..."
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/bank" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        style="@style/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/marginStart"
+                        android:text="Giới thiệu"
+                        app:layout_constraintBottom_toBottomOf="@+id/introduce"
+                        app:layout_constraintEnd_toStartOf="@+id/introduce"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/introduce" />
 
-        <Button
-            android:id="@+id/logOut"
-            android:layout_marginTop="50dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangle_conner_25"
-            android:text="Đăng xuất"
-            app:layout_constraintVertical_bias="1"
-            app:backgroundTint="@color/selector_color"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/logOut"
+                android:layout_marginTop="50dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangle_conner_25"
+                android:text="Đăng xuất"
+                app:layout_constraintVertical_bias="1"
+                app:backgroundTint="@color/selector_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
 
-</androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

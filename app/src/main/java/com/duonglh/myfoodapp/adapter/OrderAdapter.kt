@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.duonglh.myfoodapp.databinding.ItemOrderBinding
 import com.duonglh.myfoodapp.model.DataOrderProduct
 
-class OrderAdapter(val checkBox: (DataOrderProduct, Int)->Unit) :
+class OrderAdapter(val checkBox: (DataOrderProduct, Int)->Unit,
+                    val deleteOrder: (Int)->Unit) :
     ListAdapter<DataOrderProduct, OrderAdapter.ViewHolder>(
         object : DiffUtil.ItemCallback<DataOrderProduct>(){
             override fun areItemsTheSame(
@@ -60,6 +61,11 @@ class OrderAdapter(val checkBox: (DataOrderProduct, Int)->Unit) :
                     data.counts = count
                     checkBox(data, position)
                 }
+
+                deleteOrderButton.setOnClickListener {
+                    deleteOrder(position)
+                }
+
             }
         }
     }

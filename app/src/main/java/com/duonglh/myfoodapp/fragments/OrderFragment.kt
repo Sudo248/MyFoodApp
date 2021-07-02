@@ -28,10 +28,12 @@ class OrderFragment : Fragment() {
             ViewModelProvider(requireActivity()).get(SuperManager::class.java)
         }
 
-        adapter = OrderAdapter{ data, position ->
+        adapter = OrderAdapter({ data, position ->
             Log.d("From Item Changed", data.isChecked.toString())
             manager.setOrderProductChanged(data, position)
-        }
+        },{
+            manager.deleteOrderProduct(it)
+        })
 
     }
 

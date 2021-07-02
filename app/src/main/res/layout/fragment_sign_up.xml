@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:hint="@string/email_or_username"
+        android:hint="Email"
         app:boxStrokeColor="@color/selector_color"
         app:hintTextColor="@color/selector_color"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,17 +69,27 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/notificationSignUp"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop"
+        android:text="Wrong Password"
+        android:textColor="@color/red"
+        app:layout_constraintStart_toStartOf="@+id/textFieldConfirmPasswordSignUp"
+        app:layout_constraintTop_toBottomOf="@+id/textFieldConfirmPasswordSignUp" />
+
     <Button
         android:id="@+id/signUpButton"
-        android:layout_marginTop="25dp"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:src="@drawable/login_selector"
         android:text="@string/sign_up"
         app:backgroundTint="@color/red"
-        android:src="@drawable/login_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFieldConfirmPasswordSignUp" />
+        app:layout_constraintTop_toBottomOf="@+id/notificationSignUp" />
 
 
 

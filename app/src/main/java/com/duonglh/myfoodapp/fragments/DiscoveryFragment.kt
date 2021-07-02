@@ -38,17 +38,19 @@ class DiscoveryFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDiscoveryBinding.inflate(inflater, container, false)
 
-        productTypeAdapter = ProductTypeAdapter{
-//                TODO("click Item ProductType to show list Product")
-            productAdapter.submitList(it.listProduct)
-            binding.nameProductTypeDiscovery.text = it.name
-        }
         productAdapter = ProductAdapter {
 //                TODO("click Item Product to open Detail Fragment")
             manager.setProductDetail(it)
             Log.d("Product", it.toString())
             findNavController().navigate(R.id.action_discoveryFragment_to_detailFragment)
         }
+
+        productTypeAdapter = ProductTypeAdapter{
+//                TODO("click Item ProductType to show list Product")
+            productAdapter.submitList(it.listProduct)
+            binding.nameProductTypeDiscovery.text = it.name
+        }
+
         with(binding){
             rcvCategoryDiscovery.adapter = productTypeAdapter
             rcvProductDiscovery.adapter = productAdapter

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.SignUpDialog"
+    app:cardCornerRadius="40dp"
+    android:background="@color/clear">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/textTitleLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:textAlignment="center"
+            android:text="Information"
+            android:textColor="@color/red"
+            app:layout_constraintEnd_toEndOf="@+id/emailDialogSignUp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/emailDialogSignUp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/emailDialogSignUp"
+            style="@style/textTitleMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginTop="88dp"
+            android:text="hongduong@gmail.com"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/nameUserSignUp"
+            android:textSize="16dp"
+            android:hint="User name"
+            android:layout_marginTop="25dp"
+            app:layout_constraintStart_toStartOf="@+id/emailDialogSignUp"
+            app:layout_constraintEnd_toEndOf="@+id/emailDialogSignUp"
+            app:layout_constraintTop_toBottomOf="@+id/emailDialogSignUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/genderUserSignUp"
+            android:textSize="16dp"
+            android:hint="Gender user"
+            android:inputType="text"
+            android:layout_marginTop="25dp"
+            app:layout_constraintStart_toStartOf="@+id/nameUserSignUp"
+            app:layout_constraintEnd_toEndOf="@+id/nameUserSignUp"
+            app:layout_constraintTop_toBottomOf="@+id/nameUserSignUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/phoneNumberSignUp"
+            android:textSize="16dp"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:layout_marginTop="25dp"
+            app:layout_constraintStart_toStartOf="@+id/genderUserSignUp"
+            app:layout_constraintEnd_toEndOf="@+id/genderUserSignUp"
+            app:layout_constraintTop_toBottomOf="@+id/genderUserSignUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/addressSignUp"
+            android:textSize="16dp"
+            android:hint="Address"
+            android:layout_marginTop="25dp"
+            app:layout_constraintStart_toStartOf="@+id/phoneNumberSignUp"
+            app:layout_constraintEnd_toEndOf="@+id/phoneNumberSignUp"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumberSignUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/bankSignUp"
+            android:textSize="16dp"
+            android:hint="Bank "
+            android:layout_marginTop="25dp"
+            app:layout_constraintStart_toStartOf="@+id/addressSignUp"
+            app:layout_constraintEnd_toEndOf="@+id/addressSignUp"
+            app:layout_constraintTop_toBottomOf="@+id/addressSignUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/registerButtonSignUp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="@dimen/marginBottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="60dp"
+            android:text="Register"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bankSignUp" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>

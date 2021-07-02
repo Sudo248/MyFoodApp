@@ -20,7 +20,23 @@ class SignUpFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
         binding.signUpButton.setOnClickListener {
-            findNavController().navigate(R.id.action_logInFragment_to_discoveryFragment)
+            val pass = binding.textFieldPasswordSignUp.editText?.text.toString()
+            val conFirmPass = binding.textFieldConfirmPasswordSignUp.editText?.text.toString()
+            if(pass == conFirmPass){
+                binding.notificationSignUp.visibility = View.INVISIBLE
+                val bundle = Bundle()
+                bundle.putString("email", binding.textFieldUserSignUp.editText?.text.toString())
+                bundle.putString("password", pass)
+                val dialogSignUp = SignUpDialog {
+                    findNavController().navigate(R.id.action_logInFragment_to_discoveryFragment)
+                }
+                dialogSignUp.arguments = bundle
+                dialogSignUp.show(requireActivity().supportFragmentManager,"Dialog Sign Up")
+            }
+            else{
+                binding.notificationSignUp.visibility = View.VISIBLE
+            }
+
         }
         return binding.root
     }

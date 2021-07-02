@@ -16,8 +16,37 @@ class SuperManager : ViewModel() {
         _liveDataListProductType.value = data
     }
 
-    private var _liveDataListUser = MutableLiveData<List<User>>()
-    val liveDataListUser: LiveData<List<User>> = _liveDataListUser
+    private val listUser = mutableListOf<User>()
+    lateinit var currentUser: User
+
+    fun checkUser(emailOrPhone: String, password: String): Int{
+
+        for(_user in listUser){
+            if(_user.email == emailOrPhone || _user.name == emailOrPhone){
+                if(_user.password == password){
+                    Log.d("Sign In", "Successful")
+                    currentUser = _user
+                    return 2
+                }
+                else {
+                    Log.d("Sign In", "Wrong password")
+                    return 1
+                }
+            }
+        }
+        Log.d("Sign In","user Invalid")
+        return 0
+    }
+    fun addNewUser(user: User): Boolean{
+        for(_user in listUser){
+            if(_user.email == user.email || _user.phoneNumber == user.phoneNumber){
+                return false
+            }
+        }
+        listUser.add(user)
+        currentUser = user
+        return true
+    }
 
     private var _liveDataListOrder = MutableLiveData<List<DataOrderProduct>>()
     val liveDataListOrder: LiveData<List<DataOrderProduct>> = _liveDataListOrder
@@ -42,6 +71,12 @@ class SuperManager : ViewModel() {
         val list = mutableListOf<DataOrderProduct>()
         _liveDataListOrder.value?.let { list.addAll(it) }
         list.add(data)
+        _liveDataListOrder.value = list
+    }
+    fun deleteOrderProduct(position: Int){
+        val list = mutableListOf<DataOrderProduct>()
+        _liveDataListOrder.value?.let { list.addAll(it) }
+        list.removeAt(position)
         _liveDataListOrder.value = list
     }
 
@@ -79,9 +114,9 @@ class SuperManager : ViewModel() {
             Product(4,"Noodle", R.drawable.noodle,40,4.6F,100,123, false),
             Product(5,"Burger", R.drawable.burger,15,3.5F,20,50, false),
             Product(6,"OK", R.drawable.zing_burger,60,5F,100,100, false),
-            Product(5,"Beef", R.drawable.ok1,100,4.5F,200,1200, true),
-            Product(5,"Pizza", R.drawable.ok2,50,3.5F,200,500, false),
-            Product(5,"Fizz", R.drawable.ok3,60,1.5F,200,50, false),
+            Product(7,"Beef", R.drawable.ok1,100,4.5F,200,1200, true),
+            Product(8,"Pizza", R.drawable.ok2,50,3.5F,200,500, false),
+            Product(9,"Fizz", R.drawable.ok3,60,1.5F,200,50, false),
         )
         val list1 = listProduct.shuffled().toMutableList()
         val list2 = listProduct.shuffled().toMutableList()
@@ -114,6 +149,17 @@ class SuperManager : ViewModel() {
                 isFreeShip = false,
                 dueDate = 7
             ),
+        ))
+
+        listUser.add(User(
+            name = "Duonglh",
+            password = "123456",
+            gender = "nam",
+            phoneNumber = "0123456789",
+            email = "duong@gmail.com",
+            address = "Ao Sen",
+            bank = "TechcomBank",
+            order = null
         ))
 
         _liveDataListProductType.value = listProductType

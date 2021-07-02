@@ -10,7 +10,7 @@ import com.duonglh.myfoodapp.model.Product
 import kotlin.random.Random
 
 class ProductAdapter(val onItemCLickListener: (Product)->Unit) :
-    ListAdapter<Product, ProductAdapter.ViewHolder>(DifferanceProduct()){
+    ListAdapter<Product, ProductAdapter.ViewHolder>(DifferanceProduct){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemProductBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -31,7 +31,6 @@ class ProductAdapter(val onItemCLickListener: (Product)->Unit) :
                 starts.text = product.stars.toString()
                 nameProduct.text = product.name
                 pricesProduct.text = "${product.price}.0000đ"
-
                 root.setOnClickListener {
                     onItemCLickListener(product)
                 }
@@ -40,7 +39,7 @@ class ProductAdapter(val onItemCLickListener: (Product)->Unit) :
     }
 }
 
-class DifferanceProduct : DiffUtil.ItemCallback<Product>(){
+object DifferanceProduct : DiffUtil.ItemCallback<Product>(){
     override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
         return oldItem.id == newItem.id
     }

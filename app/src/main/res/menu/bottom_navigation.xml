@@ -5,11 +5,7 @@
         android:enabled="true"
         android:title="@string/discovery"
         android:icon="@drawable/ic_discovery"/>
-    <item
-        android:id="@+id/goodWillFragment"
-        android:enabled="true"
-        android:title="@string/goodwill"
-        android:icon="@drawable/ic_goodwill"/>
+
     <item
         android:id="@+id/orderFragment"
         android:enabled="true"
