@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.duonglh.myfoodapp.MainActivity
 import com.duonglh.myfoodapp.R
 import com.duonglh.myfoodapp.adapter.ProductAdapter
@@ -36,46 +36,39 @@ class DiscoveryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-
         binding = FragmentDiscoveryBinding.inflate(inflater, container, false)
+
+        productTypeAdapter = ProductTypeAdapter{
+//                TODO("click Item ProductType to show list Product")
+            productAdapter.submitList(it.listProduct)
+            binding.nameProductTypeDiscovery.text = it.name
+        }
+        productAdapter = ProductAdapter {
+//                TODO("click Item Product to open Detail Fragment")
+            manager.setProductDetail(it)
+            Log.d("Product", it.toString())
+            findNavController().navigate(R.id.action_discoveryFragment_to_detailFragment)
+        }
+        with(binding){
+            rcvCategoryDiscovery.adapter = productTypeAdapter
+            rcvProductDiscovery.adapter = productAdapter
+//            rcvCategoryDiscovery.setHasFixedSize(true)
+//            rcvProductDiscovery.setHasFixedSize(true)
+            imageUser.setOnClickListener {
+                findNavController().navigate(R.id.action_discoveryFragment_to_accountFragment)
+            }
+        }
+        manager.listProductType.observe(viewLifecycleOwner, Observer {
+            productTypeAdapter.data = it
+            productAdapter.submitList(it[0].listProduct)
+        })
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         with(activity as MainActivity){
             binding.bottomNavigation.visibility = View.VISIBLE
-            productTypeAdapter = ProductTypeAdapter(this){
-//                TODO("click Item ProductType to show list Product")
-                productAdapter.submitList(it.listProduct)
-                this@DiscoveryFragment.binding.nameProductTypeDiscovery.text = it.name
-            }
-        }
-
-        productAdapter = ProductAdapter {
-//                TODO("click Item Product to open Detail Fragment")
-            manager.setProductDetail(it)
-            Log.d("Product", it.toString())
-            Navigation.findNavController(view)
-                .navigate(R.id.action_discoveryFragment_to_detailFragment)
-        }
-
-        manager.listProductType.observe(viewLifecycleOwner, Observer {
-            productTypeAdapter.data = it
-            productAdapter.submitList(it[0].listProduct)
-        })
-
-        with(binding){
-            rcvCategoryDiscovery.adapter = productTypeAdapter
-            rcvProductDiscovery.adapter = productAdapter
-
-//            rcvCategoryDiscovery.setHasFixedSize(true)
-//            rcvProductDiscovery.setHasFixedSize(true)
-            imageUser.setOnClickListener {
-                Navigation.findNavController(root)
-                    .navigate(R.id.action_discoveryFragment_to_accountFragment)
-            }
         }
     }
 

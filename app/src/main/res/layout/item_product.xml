@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="170dp"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/clear">
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
@@ -30,7 +30,7 @@
                     android:id="@+id/imageProduct"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/zing_burger" />
+                    tools:src="@drawable/zing_burger" />
             </com.google.android.material.card.MaterialCardView>
 
 

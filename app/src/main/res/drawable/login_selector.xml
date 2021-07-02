@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:state_checked="true"
-        android:color="@color/selector_color"
-        android:drawable="@drawable/rectangle_conner_40"/>
+        android:state_selected="true"
+        android:drawable="@drawable/background_tad_log_in"/>
     <item
-        android:state_pressed="true"
-        android:color="@color/selector_color"
-        android:drawable="@drawable/rectangle_conner_25"/>
-    <item android:color="#80FFFFFF"
-        android:drawable="@drawable/rectangle_conner_25"/>
+        android:drawable="@drawable/background_search"/>
 </selector>

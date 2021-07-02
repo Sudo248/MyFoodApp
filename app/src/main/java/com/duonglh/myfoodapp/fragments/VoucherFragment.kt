@@ -46,15 +46,8 @@ class VoucherFragment : Fragment() {
             rcvVoucher.adapter = adapter
             rcvVoucher.setHasFixedSize(true)
             agreeVoucherButton.setOnClickListener {
-                if(adapter.sumVoucherChecked > 1){
-                    val toast = Toast.makeText(requireContext(), "Bạn không thể chọn quá 2 voucher cho 1 lần đặt hàng!",Toast.LENGTH_LONG)
-                    toast.setGravity(Gravity.CENTER,0,0)
-                    toast.show()
-                }
-                else{
-                    manager.setVoucher(adapter.voucherChecked())
-                    requireActivity().onBackPressed()
-                }
+                manager.setVoucher(adapter.voucherChecked())
+                requireActivity().onBackPressed()
             }
         }
     }

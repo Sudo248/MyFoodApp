@@ -1,18 +1,17 @@
 package com.duonglh.myfoodapp.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.duonglh.myfoodapp.MainActivity
+import androidx.navigation.fragment.findNavController
 import com.duonglh.myfoodapp.R
-import com.duonglh.myfoodapp.databinding.FragmentAccountBinding
 
-class AccountFragment : Fragment() {
+class SplashFragment : Fragment() {
 
-    lateinit var binding: FragmentAccountBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,19 +23,16 @@ class AccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentAccountBinding.inflate(inflater, container, false)
-        return binding.root
+        return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding){
-            logOut.setOnClickListener {
-                (activity as MainActivity).binding.bottomNavigation.visibility = View.GONE
-                Navigation.findNavController(root).navigate(R.id.action_accountFragment_to_logInFragment)
-            }
-        }
+        Handler(Looper.myLooper()!!).postDelayed(
+            {
+                findNavController().navigate(R.id.action_splashFragment_to_logInFragment)
+            },2000
+        )
+//        Handler(Looper.myLooper() ?: )
     }
-
-
 }

@@ -12,7 +12,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/zing_burger" />
+        android:src="@drawable/img_voucher" />
     <TextView
         android:id="@+id/nameVoucher"
         android:text="Miễn phí 6-6"

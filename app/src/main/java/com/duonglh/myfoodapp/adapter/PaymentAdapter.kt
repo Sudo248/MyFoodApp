@@ -14,7 +14,7 @@ class PaymentAdapter : RecyclerView.Adapter<PaymentAdapter.ViewHolder>() {
                 imageProductPayment.setImageResource(product.imageSrc)
                 nameProductPayment.text = product.name
                 pricesProductPayment.text = "${product.price}.000đ"
-                countProductPayment.text = data.first.toString()
+                countProductPayment.text = "Số lượng: " + data.first.toString()
             }
         }
     }

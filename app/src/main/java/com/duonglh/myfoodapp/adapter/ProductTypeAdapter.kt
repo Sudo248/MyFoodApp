@@ -1,17 +1,17 @@
 package com.duonglh.myfoodapp.adapter
 
-import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.duonglh.myfoodapp.databinding.ItemProductTypeBinding
 import com.duonglh.myfoodapp.model.ProductType
 
-class ProductTypeAdapter(val context: Context, val onItemCLickListener:(ProductType) -> Unit) :
+class ProductTypeAdapter(val onItemCLickListener:(ProductType) -> Unit) :
     RecyclerView.Adapter<ProductTypeAdapter.ViewHolder>(){
 
-    var currentItem = 0
+    lateinit var lastItemSelected: ItemProductTypeBinding
 
     var data = listOf<ProductType>()
         set(value) {
@@ -27,45 +27,46 @@ class ProductTypeAdapter(val context: Context, val onItemCLickListener:(ProductT
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(data[position])
-        if(position == currentItem){
-            holder.setColorOnClickItem()
-        }
-        else{
-            holder.setColorNotClickItem()
+        holder.bind(data[position], position)
+        if(position == 0){
+            lastItemSelected = holder.binding
+            holder.setColorOnClickItem(lastItemSelected)
+            lastItemSelected.root.isSelected = true
         }
     }
+    
+    inner class ViewHolder(val binding: ItemProductTypeBinding) : RecyclerView.ViewHolder(binding.root){
 
-
-    inner class ViewHolder(private val binding: ItemProductTypeBinding) : RecyclerView.ViewHolder(binding.root){
-
-        fun bind(productType: ProductType){
+        fun bind(productType: ProductType, position: Int){
             with(binding) {
                 imageProductType.setImageResource(productType.imageSrc)
                 nameProductType.text = productType.name
                 root.setOnClickListener {
-                    onItemCLickListener(productType)
-                    currentItem = adapterPosition
-                    notifyDataSetChanged()
-//                    cardViewPT.outlineAmbientShadowColor = context.getColor(R.color.selector_color)
-//                    cardViewPT.outlineSpotShadowColor = context.getColor(R.color.selector_color)
-//                    imgProductType.setColorFilter(ContextCompat.getColor(context, R.color.selector_color), PorterDuff.Mode.SRC_IN)
-//                    nameProductType.setTextColor(R.color.selector_color)
+                    Log.d("P Selected ", root.isSelected.toString())
+                    if(!root.isSelected){
+                        onItemCLickListener(productType)
+                        setColorNotClickItem(lastItemSelected)
+                        lastItemSelected.root.isSelected = false
+
+                        setColorOnClickItem(this)
+                        lastItemSelected = this
+                        root.isSelected = true
+                    }
                 }
 
             }
         }
 
-        fun setColorOnClickItem(){
-            with(binding){
+        fun setColorOnClickItem(item: ItemProductTypeBinding){
+            with(item){
                 root.strokeWidth = 4
                 root.strokeColor = Color.RED
                 imageProductType.setColorFilter(Color.RED)
                 nameProductType.setTextColor(Color.RED)
             }
         }
-        fun setColorNotClickItem(){
-            with(binding){
+        fun setColorNotClickItem(item: ItemProductTypeBinding){
+            with(item){
                 root.strokeWidth = 1
                 root.strokeColor = Color.GRAY
                 imageProductType.setColorFilter(Color.GRAY)

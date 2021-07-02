@@ -50,8 +50,8 @@ class DialogFragment(val toPaymentFragment: ()->Unit) : DialogFragment() {
             closeDialogButton.setOnClickListener { dismiss() }
             buyDialogButton.setOnClickListener {
                 manager.setListPayment(listOf(Pair(count, data.second)))
-                toPaymentFragment()
                 dismiss()
+                toPaymentFragment()
             }
 
         }

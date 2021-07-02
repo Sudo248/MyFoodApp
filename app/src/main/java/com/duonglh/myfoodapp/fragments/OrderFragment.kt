@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.duonglh.myfoodapp.R
 import com.duonglh.myfoodapp.adapter.OrderAdapter
 import com.duonglh.myfoodapp.databinding.FragmentOrderBinding
@@ -63,13 +63,13 @@ class OrderFragment : Fragment() {
 
             buyProductOrder.setOnClickListener {
 
-                Navigation.findNavController(root).navigate(R.id.action_orderFragment_to_paymentFragment)
+                findNavController().navigate(R.id.action_orderFragment_to_paymentFragment)
             }
             rcvOrder.adapter = adapter
 //            rcvOrder.setHasFixedSize(true)
 
             constrainVoucherOrder.setOnClickListener {
-                Navigation.findNavController(root).navigate(R.id.action_orderFragment_to_voucherFragment)
+                findNavController().navigate(R.id.action_orderFragment_to_voucherFragment)
             }
         }
     }

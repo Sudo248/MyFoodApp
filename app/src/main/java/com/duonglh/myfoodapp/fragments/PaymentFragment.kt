@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.duonglh.myfoodapp.MainActivity
 import com.duonglh.myfoodapp.R
 import com.duonglh.myfoodapp.adapter.PaymentAdapter
@@ -80,10 +80,11 @@ class PaymentFragment : Fragment() {
                 t.show()
                 manager.setListPayment(listOf())
                 manager.setVoucher(null)
-                Navigation.findNavController(view).navigate(R.id.action_paymentFragment_to_discoveryFragment)
+                manager.removeItemBought()
+                findNavController().navigate(R.id.action_paymentFragment_to_discoveryFragment)
             }
             constrainVoucherPayment.setOnClickListener {
-                Navigation.findNavController(root).navigate(R.id.action_paymentFragment_to_voucherFragment)
+                findNavController().navigate(R.id.action_paymentFragment_to_voucherFragment)
             }
         }
 
